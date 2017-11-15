@@ -13,13 +13,18 @@
       {
         text-decoration:none;
       }
+      .main-container {
+        text-align: center;
+      }
     </style>
+    <div class="main-container">
     <template is="dom-repeat" items="{{websites}}">
       <a class="share-link" href="[[item.action]]" target="_blank">
         <img class="social-icon" src="[[getIconPath(item.name)]]" />
       </a>
      </template>
   </template>
+  </div>
   <script>
     /**
      * `share-me`
