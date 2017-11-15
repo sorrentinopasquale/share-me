@@ -1,0 +1,62 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="share-me">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .social-icon {
+        width: 50px;
+      }
+      .share-link
+      {
+        text-decoration:none;
+      }
+    </style>
+    <template is="dom-repeat" items="{{websites}}">
+      <a class="share-link" href="[[item.action]]" target="_blank">
+        <img class="social-icon" src="[[getIconPath(item.name)]]" />
+      </a>
+     </template>
+  </template>
+  <script>
+    /**
+     * `share-me`
+     * Component for share the page on facebook
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class ShareMe extends Polymer.Element {
+      static get is() {
+          return 'share-me';
+      }
+      ready() {
+          super.ready();
+          this.websites = [
+              {name: 'facebook', action: 'https://www.facebook.com/sharer/sharer.php?u=' + this.getCurrentUrl()},
+              {name: 'twitter', action: 'https://twitter.com/intent/tweet?text=' + this.getCurrentUrl()},
+              {name: 'pinterest', action: 'http://pinterest.com/pin/create/button/?url=' + this.getCurrentUrl() + '&description=I like this page'},
+              {name: 'google', action: 'https://plus.google.com/share?url='  + this.getCurrentUrl()}
+          ];
+      }
+        static get properties() {
+            return {
+                iconset: {
+                    type: String,
+                    value: 'basic'
+                }
+            }
+        }
+        getCurrentUrl() {
+            return window.location.href;
+        }
+        getIconPath(socialName) {
+                  return 'http://' + location.host + '/images/' + (this.iconset || 'basic') + '/' + socialName +'.svg';
+        }
+    }
+    window.customElements.define(ShareMe.is, ShareMe);
+  </script>
+</dom-module>
