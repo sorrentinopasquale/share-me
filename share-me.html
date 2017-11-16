@@ -18,6 +18,7 @@
       }
     </style>
     <div class="main-container">
+      <p>Share you website</p>
     <template is="dom-repeat" items="{{websites}}">
       <a class="share-link" href="[[item.action]]" target="_blank">
         <img class="social-icon" src="[[getIconPath(item.name)]]" />
@@ -42,7 +43,7 @@
           super.ready();
           this.websites = [
               {name: 'facebook', action: 'https://www.facebook.com/sharer/sharer.php?u=' + this.getCurrentUrl()},
-              {name: 'twitter', action: 'https://twitter.com/intent/tweet?text=' + this.getCurrentUrl()},
+              {name: 'twitter', action: 'https://twitter.com/intent/tweet?text=' + 'I like this page: ' + this.getCurrentUrl()},
               {name: 'pinterest', action: 'http://pinterest.com/pin/create/button/?url=' + this.getCurrentUrl() + '&description=I like this page'},
               {name: 'google', action: 'https://plus.google.com/share?url='  + this.getCurrentUrl()}
           ];
