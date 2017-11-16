@@ -16,9 +16,12 @@
       .main-container {
         text-align: center;
       }
+      .sharing-label {
+        color: grey;
+      }
     </style>
     <div class="main-container">
-      <p>Share you website</p>
+      <p class="sharing-label">Share your website</p>
     <template is="dom-repeat" items="{{websites}}">
       <a class="share-link" href="[[item.action]]" target="_blank">
         <img class="social-icon" src="[[getIconPath(item.name)]]" />
